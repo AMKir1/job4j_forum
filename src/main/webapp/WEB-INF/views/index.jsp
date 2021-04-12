@@ -34,12 +34,14 @@
             <thead>
             <tr>
                 <th scope="col">Тема</th>
+                <th scope="col">Дата создания</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${posts}" var="post">
                 <tr>
                     <td><c:out value="${post.name}"/></td>
+                    <td><c:out value="${post.created.time.toLocaleString()}"/></td>
                 </tr>
             </c:forEach>
             </tbody>

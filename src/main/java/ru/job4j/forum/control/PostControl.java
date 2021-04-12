@@ -16,7 +16,7 @@ public class PostControl {
     }
 
     @GetMapping("/post")
-    public String postPage(@RequestParam int id, Model model) {
+    public String postPage(@RequestParam long id, Model model) {
         model.addAttribute("post", postService.getById(id));
         return "edit";
     }

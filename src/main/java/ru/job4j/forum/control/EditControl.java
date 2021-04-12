@@ -19,7 +19,7 @@ public class EditControl {
     }
 
     @GetMapping("/edit")
-    public String editPage(@RequestParam int id, Model model) {
+    public String editPage(@RequestParam long id, Model model) {
         model.addAttribute("post", postService.getById(id));
     return "edit";
     }
