@@ -2,10 +2,7 @@ package ru.job4j.forum.control;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.job4j.forum.model.Post;
 import ru.job4j.forum.service.PostService;
 
@@ -24,11 +21,11 @@ public class EditControl {
     return "edit";
     }
 
-    @PostMapping("/edit")
-    public String editPost(@ModelAttribute Post post, Model model) {
-        if(post.getName() != null && post.getDesc() != null) {
-            postService.save(post);
+    @RequestMapping(value="/edit", method = RequestMethod.POST)
+    public String edit(@ModelAttribute Post post) {
+        if(post.getName() != null) {
+            postService.update(post);
         }
-        return "edit";
+        return "redirect:/post/" + post.getId();
     }
 }

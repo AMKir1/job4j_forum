@@ -30,4 +30,16 @@ public class PostService {
     public void save(Post post) {
         this.posts.save(post);
     }
+
+    public boolean update(Post post) {
+        if (this.posts.findById(post.getId()).isPresent()) {
+            Post p = this.posts.findById(post.getId()).get();
+            p.setName(post.getName());
+            p.setDesc(post.getDesc());
+            p.setCreated(post.getCreated());
+            this.posts.save(post);
+            return true;
+        }
+        return false;
+    }
 }
