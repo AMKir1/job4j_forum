@@ -16,4 +16,4 @@ CREATE TABLE users
 insert into authorities (authority) values ('USER');
 insert into authorities (authority) values ('ADMIN');
 
-insert into users (username, password, authority_id) values ('admin', true, '$2a$10$gTI1EQrRh3FTuUZ76sYyA.p50a9KO7pyA/a8eTnK5ViL83P0nTYam', (select id from authorities where authority = 'ADMIN'));
+insert into users (username, enabled, password, authority_id) values ('admin', true, '$2a$10$gTI1EQrRh3FTuUZ76sYyA.p50a9KO7pyA/a8eTnK5ViL83P0nTYam', (select id from authorities where authority = 'ADMIN'));
