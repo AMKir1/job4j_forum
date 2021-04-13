@@ -1,26 +1,27 @@
 package ru.job4j.forum.service;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.User;
-
-import java.util.ArrayList;
-import java.util.List;
+import ru.job4j.forum.store.UserRepository;
 
 @Service
 public class UserService {
 
-    private List<User> users = new ArrayList<>();
+    private final UserRepository users;
+    private final JdbcTemplate template;
 
-    public UserService() {
-        this.users.add(new User(1, "admin", "admin", null));
+    public UserService(UserRepository users, JdbcTemplate template) {
+        this.users = users;
+        this.template = template;
     }
 
-    public User getUserByName(String name) {
-        return this.users.stream().filter(u -> u.getUsername().equals(name)).findFirst().get();
+    public boolean getUserByName(String name) {
+        return this.template.queryForList("SELECT * FROM users u WHERE u.username = ?", name).size() > 0;
     }
 
     public void addUser(User user) {
-        users.add(user);
+        users.save(user);
     }
 
 }

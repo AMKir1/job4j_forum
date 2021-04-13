@@ -28,6 +28,11 @@
                 Вход
             </div>
             <div class="card-body">
+                <c:if test="${not empty errorMessage}">
+                    <div class="alert alert-danger" role="alert">
+                            ${errorMessage}
+                    </div>
+                </c:if>
                 <form name='login' action="<c:url value='/login'/>" method='POST'>
                     <table>
                         <tr>
@@ -43,6 +48,8 @@
                             <td colspan='2'><input class="btn btn-secondary" name="submit" type="submit" value="Войти"/></td>
                         </tr>
                     </table>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <br>
                     <a href="<c:url value='/reg'/>">Регистрация</a>
                 </form>
             </div>

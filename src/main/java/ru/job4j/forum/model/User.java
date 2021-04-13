@@ -1,32 +1,39 @@
 package ru.job4j.forum.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "users")
 public class User {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String username;
     private String password;
+    private Boolean enabled;
 
-    private List<Post> posts = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "authority_id")
+    private Authority authority;
+
 
     public User() {
     }
 
-    public User(int id, String username, String password, List<Post> posts) {
+    public User(long id, String username, String password, Boolean enabled) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.posts = posts;
+        this.enabled = enabled;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -46,13 +53,22 @@ public class User {
         this.password = password;
     }
 
-    public List<Post> getPosts() {
-        return posts;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
+
+    public Authority getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(Authority authority) {
+        this.authority = authority;
+    }
+
 
     @Override
     public String toString() {
@@ -60,7 +76,6 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", posts=" + posts +
                 '}';
     }
 
@@ -71,12 +86,11 @@ public class User {
         User user = (User) o;
         return id == user.id &&
                 Objects.equals(username, user.username) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(posts, user.posts);
+                Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, posts);
+        return Objects.hash(id, username, password);
     }
 }
