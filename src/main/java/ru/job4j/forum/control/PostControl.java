@@ -15,13 +15,13 @@ public class PostControl {
         this.posts = posts;
     }
 
-    @RequestMapping(value="/post/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/post/{id}", method = RequestMethod.GET)
     public String get(@PathVariable long id, Model model) {
         model.addAttribute("post", posts.getById(id));
         return "post";
     }
 
-    @RequestMapping(value="/post/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/post/create", method = RequestMethod.POST)
     public String create(@ModelAttribute Post post) {
         posts.save(post);
         return "redirect:/post/" + post.getId();

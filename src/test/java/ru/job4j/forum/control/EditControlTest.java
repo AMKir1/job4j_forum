@@ -44,7 +44,7 @@ public class EditControlTest {
     @WithMockUser
     public void edit() throws Exception {
         this.mockMvc.perform(post("/edit")
-                .param("name","Куплю ладу-грант. Дорого."))
+                .param("name", "Куплю ладу-грант. Дорого."))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection());
         ArgumentCaptor<Post> argument = ArgumentCaptor.forClass(Post.class);

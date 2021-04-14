@@ -43,7 +43,7 @@ public class PostControlTest {
     @WithMockUser
     public void create() throws Exception {
         this.mockMvc.perform(post("/post/create")
-                .param("name","Куплю ладу-грант. Дорого."))
+                .param("name", "Куплю ладу-грант. Дорого."))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection());
         ArgumentCaptor<Post> argument = ArgumentCaptor.forClass(Post.class);

@@ -21,9 +21,9 @@ public class EditControl {
     return "edit";
     }
 
-    @RequestMapping(value="/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String edit(@ModelAttribute Post post) {
-        if(post.getName() != null) {
+        if (post.getName() != null) {
             postService.update(post);
         }
         return "redirect:/post/" + post.getId();
