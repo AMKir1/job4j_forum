@@ -9,10 +9,7 @@ sudo: false
 # for codecov.io\
 env:
   global:
-    - CODECOV_TOKEN=:uuid-repo-token
-#env:
-#  global:
-#    - CODECOV_TOKEN="943eee43-11a0-42b3-b8a0-f8a10141e7df"
+    - CODECOV_TOKEN="943eee43-11a0-42b3-b8a0-f8a10141e7df"
 
 services:
   - postgresql
