@@ -9,7 +9,7 @@ sudo: false
 # for codecov.io
 env:
   global:
-    - CODECOV_TOKEN="8786a5bf-2e1f-48b8-8875-51ea34272f91"
+    - CODECOV_TOKEN="943eee43-11a0-42b3-b8a0-f8a10141e7df"
 
 services:
   - postgresql
