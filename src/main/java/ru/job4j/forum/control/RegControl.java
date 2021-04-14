@@ -30,15 +30,14 @@ public class RegControl {
 
     @PostMapping("/reg")
     public String save(@ModelAttribute User user, Model model) {
-        if(userService.getUserByName(user.getUsername())) {
-            model.addAttribute("errorMessage","This user already exists!");
+        if (userService.getUserByName(user.getUsername())) {
+            model.addAttribute("errorMessage", "This user already exists!");
             return "reg";
-        } else {
-            user.setEnabled(true);
-            user.setPassword(encoder.encode(user.getPassword()));
-            user.setAuthority(authorityRepository.findByAuthority("USER"));
-            userService.addUser(user);
-            return "redirect:/login";
         }
+        user.setEnabled(true);
+        user.setPassword(encoder.encode(user.getPassword()));
+        user.setAuthority(authorityRepository.findByAuthority("ROLE_USER"));
+        userService.addUser(user);
+        return "redirect:/login";
     }
 }
